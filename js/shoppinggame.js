@@ -205,7 +205,7 @@ function loadMasterData() {
   let mpro = loadMagicProducts(magicProductData, prodId);
   let productsList;
 
-  if (pro != null && pro.length > 0 && mpro != null && mpro.length > 0) {
+  if (pro !== null && pro.length > 0 && mpro !== null && mpro.length > 0) {
     productsList = pro.concat(mpro);
   }
 
@@ -213,10 +213,12 @@ function loadMasterData() {
 }
 
 // Complete this function
-const findProductById = id => {};
+const findProductById = id => {
+  return product => product.id === id;
+};
 
 // Complete this function
-const generateProductId = () => {};
+const generateProductId = () => Math.ceil(Math.random() * 21);
 
 const getProduct = (prodList, pId) => {
   return prodList.find(findProductById(pId));
