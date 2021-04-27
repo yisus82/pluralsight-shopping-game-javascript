@@ -78,12 +78,12 @@ class Rating {
 
 // Complete the loadProducts function
 const loadProducts = (map, prodId) => {
-  let a = new Array();
+  const a = new Array();
   try {
     // Call Object.keys() to load the property names of the Product object in to prodKeys array here
-    let prodKeys = Object.keys(new Product());
+    const prodKeys = Object.keys(new Product());
 
-    let iterator_obj = map.entries();
+    const iterator_obj = map.entries();
 
     if (prodKeys.length > 0) {
       for (let item of iterator_obj) {
@@ -95,7 +95,7 @@ const loadProducts = (map, prodId) => {
 
         if (prodObj !== undefined && prodObj !== null) {
           for (let i = 0; i < prodKeys.length; i++) {
-            let property = prodKeys[i];
+            const property = prodKeys[i];
             if (property === 'id') {
               prodObj[property] = prodId;
             } else if (property === 'name') {
@@ -121,12 +121,12 @@ const loadProducts = (map, prodId) => {
 
 // Complete the loadMagicProducts function
 const loadMagicProducts = (map, prodId) => {
-  let a = new Array();
+  const a = new Array();
   try {
     // Call Object.key() to load the property names of the MagicProduct object in to magProdKeys array here
-    let magProdKeys = Object.keys(new MagicProduct());
+    const magProdKeys = Object.keys(new MagicProduct());
 
-    let iterator_obj = map.entries();
+    const iterator_obj = map.entries();
 
     if (magProdKeys.length > 0) {
       for (let item of iterator_obj) {
@@ -134,11 +134,11 @@ const loadMagicProducts = (map, prodId) => {
         const value = item[1];
 
         // Create and assign an instance of MagicProduct to prodObj here
-        let magProdObj = new MagicProduct();
+        const magProdObj = new MagicProduct();
 
-        if (magProdObj !== undefined && magProdObj != null) {
+        if (magProdObj !== undefined && magProdObj !== null) {
           for (let i = 0; i < magProdKeys.length; i++) {
-            let property = magProdKeys[i];
+            const property = magProdKeys[i];
             if (property === 'id') {
               magProdObj[property] = prodId;
             } else if (property === 'name') {
@@ -173,7 +173,7 @@ function loadMasterData() {
   const daysLater = new Date(today.getFullYear(), today.getMonth(), today.getDay() + 3);
 
   //##############Load Products###############################
-  let productData = new Map();
+  const productData = new Map();
   productData.set('popcorn', { pr: 100.5, dt: oneYearLater });
   productData.set('oatmeal', { pr: 100.25, dt: oneYearLater });
   productData.set('macaroni', { pr: 100.1, dt: oneYearLater });
@@ -190,10 +190,10 @@ function loadMasterData() {
   productData.set('greens', { pr: 50, dt: daysLater });
   productData.set('sugar', { pr: 100, dt: oneYearLater });
 
-  let pro = loadProducts(productData, prodId);
+  const pro = loadProducts(productData, prodId);
 
   //##############Load MagicProducts###############################
-  let magicProductData = new Map();
+  const magicProductData = new Map();
   magicProductData.set('Christmas cake', { pr: 1000, dt: oneYearLater, pt: 10, isB: true });
   magicProductData.set('honey', { pr: 200, dt: oneYearLater, pt: 20, isB: false });
   magicProductData.set('pepper', { pr: 500, dt: oneYearLater, pt: 10, isB: false });
@@ -202,7 +202,7 @@ function loadMasterData() {
 
   prodId = pro.length + 1;
 
-  let mpro = loadMagicProducts(magicProductData, prodId);
+  const mpro = loadMagicProducts(magicProductData, prodId);
   let productsList;
 
   if (pro !== null && pro.length > 0 && mpro !== null && mpro.length > 0) {
@@ -257,8 +257,8 @@ const findPointsForExpDate = prod => {
 };
 
 const calculatePoints = (prod, tBill) => {
-  let pointsToBill = findPointsToBill(Math.round(tBill));
-  let pointsForExpDate = findPointsForExpDate(prod);
+  const pointsToBill = findPointsToBill(Math.round(tBill));
+  const pointsForExpDate = findPointsForExpDate(prod);
   player.score = player.score + pointsToBill + pointsForExpDate;
   if (prod instanceof MagicProduct) {
     if (prod.isBonus) {
@@ -271,7 +271,7 @@ const calculatePoints = (prod, tBill) => {
 
 // Complete this function
 function init(data) {
-  if (Object.is(data, undefined) == false && gameComplete == true) {
+  if (Object.is(data, undefined) === false && gameComplete === true) {
     console.log(
       'Welcome to the Shopping Master game! You can shop for groceries and become a Shopping Master!'
     );
@@ -298,7 +298,7 @@ function init(data) {
 
 function start(data) {
   rl.question('What would you like to do? <Enter option number>: ', function (option) {
-    if (option == '' || isNaN(option)) {
+    if (option === '' || isNaN(option)) {
       console.log('Invalid option! Enter 1 or 2'.red);
       start(data);
     } else {
@@ -311,8 +311,8 @@ function start(data) {
 const shop = (prodList, tBill, lastProd) => {
   let totalBill = tBill;
   const prId = generateProductId();
-  let product = Object.is(lastProd, undefined) ? getProduct(prodList, prId) : lastProd; // Assign the value of product here
-  let productDetails = product.getDetails(); // Assign the value of productDetails here
+  const product = Object.is(lastProd, undefined) ? getProduct(prodList, prId) : lastProd; // Assign the value of product here
+  const productDetails = product.getDetails(); // Assign the value of productDetails here
 
   rl.question(
     `You can buy - ${productDetails}.\n Do you want to buy this item <Y/N>? `.yellow,
@@ -328,7 +328,7 @@ const shop = (prodList, tBill, lastProd) => {
           Object.defineProperty(player, 'status', { value: 'Shopping Master' });
           exitWon();
         } else {
-          let iCount = ++player.items;
+          const iCount = ++player.items;
           // Make the Object.defineProperty() call here to set the value of items using the value of iCount
           Object.defineProperty(player, 'items', { value: iCount });
           if (player.items < 10) {
@@ -354,17 +354,18 @@ const shop = (prodList, tBill, lastProd) => {
 // Complete this function
 const rateAndExit = () => {
   // Create a new instance of Rating and assign it to a variable named playerRating here
+  const playerRating = new Rating();
   rl.question(
     'How would you rate this game on a scale of 1-10 (1 being the lowest)?:',
     function (r) {
-      if (r == '' || isNaN(r) || r == 0 || r > 10) {
-        console.log('Invalid rating! Please nter a number from 1 - 10'.red);
+      if (r === '' || isNaN(r) || r === 0 || r > 10) {
+        console.log('Invalid rating! Please enter a number from 1 - 10'.red);
         rateAndExit();
       } else {
         // Call rating setter method of playerRating to set user entered rate value here
-
+        playerRating.rating = r;
         // Call Object.assign() method here to populate target
-
+        const target = Object.assign({}, player, playerRating);
         console.log(`${target.name} you rated this game as ${target.rate}`.green);
         console.log('Thank you for your valuable feedback.'.blue);
         rl.close();
@@ -375,7 +376,7 @@ const rateAndExit = () => {
 
 // Complete this function
 const exitLost = () => {
-  let pointsToReach; // Assign calculated value to pointsToReach here
+  const pointsToReach = 500 - player.getCurrentScore(); // Assign calculated value to pointsToReach here
   console.log(
     `Your chances are over! You are short of ${pointsToReach} to become a Shopping Master. Good Luck for next time!`
       .yellow
@@ -385,18 +386,18 @@ const exitLost = () => {
 
 // Complete this function
 const exitWon = () => {
-  let finalStatus;
+  const finalStatus = player.status;
   console.log(`Congratulations!!! You became ${finalStatus}!`.blue);
   rateAndExit();
 };
 
 // Uncomment this function once you fully implement the game to be able to run it
-// (function setGameCompleteFlag(){
-//     gameComplete = true;
+// (function setGameCompleteFlag() {
+//   gameComplete = true;
 // })();
 
 function main() {
-  let products = loadMasterData();
+  const products = loadMasterData();
   init(products);
 }
 
@@ -416,9 +417,9 @@ const quit = () => {
 };
 
 function doAction(o, d) {
-  if (o == 1) {
+  if (o === 1) {
     shop(d, 0);
-  } else if (o == 2) {
+  } else if (o === 2) {
     quit();
   }
 }
@@ -426,25 +427,25 @@ function doAction(o, d) {
 main();
 
 exports.gameComplete = gameComplete;
-if (typeof name != 'undefined') {
+if (typeof name !== 'undefined') {
   exports.name = name;
 }
-if (typeof score != 'undefined') {
+if (typeof score !== 'undefined') {
   exports.score = score;
 }
-if (typeof items != 'undefined') {
+if (typeof items !== 'undefined') {
   exports.items = items;
 }
-if (typeof player != 'undefined') {
+if (typeof player !== 'undefined') {
   exports.player = player;
 }
-if (typeof Product != 'undefined') {
+if (typeof Product !== 'undefined') {
   exports.Product = Product;
 }
-if (typeof MagicProduct != 'undefined') {
+if (typeof MagicProduct !== 'undefined') {
   exports.MagicProduct = MagicProduct;
 }
-if (typeof Rating != 'undefined') {
+if (typeof Rating !== 'undefined') {
   exports.Rating = Rating;
 }
 exports.dateDiff = dateDiff;
